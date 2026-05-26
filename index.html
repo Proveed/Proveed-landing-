@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROVEED — Qué es y cómo funciona</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--verde:#A8E63D;--verde2:#7BC234;--negro:#0A0A0A;--gris:#F5F6F2;--naranja:#FF8C00;}
+body{font-family:'Inter',sans-serif;background:white;color:#111;overflow-x:hidden;}
+
+nav{
+  padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #eee;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-brand{font-size:1.1rem;font-weight:900;color:#111;}
+.nav-brand span{color:var(--verde2);}
+.nav-links{display:flex;gap:20px;align-items:center;}
+.nav-links a{font-size:0.82rem;font-weight:600;color:#555;text-decoration:none;}
+.nav-cta{background:#111;color:white;padding:9px 20px;border-radius:24px;font-size:0.8rem;font-weight:800;text-decoration:none;}
+
+/* HERO */
+.hero{
+  padding:80px 24px 60px;
+  text-align:center;
+  background:linear-gradient(180deg,var(--gris) 0%,white 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(168,230,61,0.15) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(168,230,61,0.1);border:1px solid rgba(123,194,52,0.3);
+  padding:7px 18px;border-radius:50px;
+  font-size:0.75rem;font-weight:800;color:var(--verde2);
+  margin-bottom:24px;
+}
+.hero-h1{
+  font-size:clamp(2.2rem,6vw,4rem);
+  font-weight:900;letter-spacing:-2px;line-height:1.05;
+  max-width:800px;margin:0 auto 20px;color:#111;
+}
+.hero-h1 .hl{
+  background:linear-gradient(135deg,var(--verde),var(--verde2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-p{
+  font-size:1.1rem;color:#666;max-width:540px;
+  margin:0 auto 36px;line-height:1.7;
+}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{
+  background:#111;color:white;
+  padding:14px 28px;border-radius:14px;
+  font-size:0.9rem;font-weight:800;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary{
+  background:white;color:#111;
+  border:2px solid #eee;
+  padding:14px 28px;border-radius:14px;
+  font-size:0.9rem;font-weight:800;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-verde{background:var(--verde);color:#111;}
+
+/* VISUAL HERO */
+.hero-visual{
+  max-width:700px;margin:48px auto 0;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;
+}
+.vis-card{
+  background:white;border-radius:20px;padding:20px;
+  box-shadow:0 4px 24px rgba(0,0,0,0.07);
+  border:1px solid #f0f0f0;text-align:center;
+}
+.vis-emoji{font-size:2.2rem;margin-bottom:10px;display:block;}
+.vis-title{font-size:0.78rem;font-weight:800;color:#111;margin-bottom:4px;}
+.vis-sub{font-size:0.68rem;color:#aaa;}
+.vis-price{font-size:1rem;font-weight:900;color:var(--verde2);margin-top:8px;}
+.vis-badge{
+  display:inline-block;font-size:0.58rem;font-weight:800;
+  padding:2px 8px;border-radius:20px;margin-top:6px;
+}
+
+/* SECTIONS */
+.section{padding:80px 24px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(168,230,61,0.1);border:1px solid rgba(123,194,52,0.25);
+  padding:6px 16px;border-radius:50px;
+  font-size:0.72rem;font-weight:800;color:var(--verde2);
+  margin-bottom:16px;
+}
+.section-h{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-1px;color:#111;margin-bottom:14px;line-height:1.15;}
+.section-p{font-size:1rem;color:#666;max-width:540px;line-height:1.7;margin-bottom:48px;}
+
+/* GRID 3 COL */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.card-feat{
+  background:var(--gris);border-radius:20px;padding:28px;
+  border:1px solid #eee;transition:0.3s;
+}
+.card-feat:hover{background:white;box-shadow:0 8px 30px rgba(0,0,0,0.08);transform:translateY(-3px);}
+.cf-icon{
+  width:52px;height:52px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:16px;
+}
+.cf-title{font-size:0.98rem;font-weight:800;color:#111;margin-bottom:8px;}
+.cf-desc{font-size:0.82rem;color:#666;line-height:1.6;}
+.cf-tag{
+  display:inline-block;font-size:0.62rem;font-weight:700;
+  padding:3px 10px;border-radius:20px;margin-top:12px;
+  background:rgba(123,194,52,0.1);color:var(--verde2);
+}
+
+/* PROCESO VISUAL */
+.proceso{
+  background:var(--negro);border-radius:28px;
+  padding:52px 40px;margin-top:48px;
+  color:white;
+}
+.proceso-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;margin-top:40px;}
+.ps{text-align:center;position:relative;}
+.ps-num{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--verde);color:#111;
+  font-size:1.1rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+}
+.ps-icon{font-size:1.8rem;margin-bottom:10px;}
+.ps-title{font-size:0.9rem;font-weight:800;margin-bottom:6px;}
+.ps-desc{font-size:0.76rem;color:rgba(255,255,255,0.45);line-height:1.5;}
+
+/* VENTAJAS ECUADOR */
+.ecuador-section{
+  background:linear-gradient(135deg,#f0fde4,#e8f5d4);
+  border-radius:28px;
+  padding:52px 40px;
+  position:relative;overflow:hidden;
+}
+.ecuador-section::before{
+  content:'🇪🇨';position:absolute;right:20px;top:20px;
+  font-size:4rem;opacity:0.15;
+}
+.ecuador-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:36px;}
+.ec-item{
+  background:white;border-radius:16px;padding:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);
+}
+.ec-icon{font-size:1.5rem;margin-bottom:10px;}
+.ec-title{font-size:0.88rem;font-weight:800;color:#111;margin-bottom:6px;}
+.ec-desc{font-size:0.76rem;color:#666;line-height:1.5;}
+
+/* TESTIMONIOS */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.testi-card{
+  background:var(--gris);border-radius:20px;padding:24px;
+  border:1px solid #eee;
+}
+.testi-stars{color:var(--verde2);font-size:0.9rem;margin-bottom:12px;}
+.testi-text{font-size:0.85rem;color:#333;line-height:1.6;margin-bottom:16px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-avatar{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;font-weight:800;color:white;flex-shrink:0;
+}
+.testi-name{font-size:0.82rem;font-weight:700;color:#111;}
+.testi-role{font-size:0.7rem;color:#aaa;}
+
+/* PREGUNTAS */
+.faq-list{max-width:700px;margin:0 auto;}
+.faq-item{
+  border-bottom:1px solid #eee;padding:20px 0;cursor:pointer;
+}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:0.95rem;font-weight:700;color:#111;
+}
+.faq-a{
+  font-size:0.85rem;color:#666;line-height:1.6;
+  margin-top:12px;display:none;
+}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-arrow{transition:0.3s;font-size:0.8rem;color:#aaa;}
+
+/* CTA FINAL */
+.cta-final{
+  padding:100px 24px;text-align:center;
+  background:var(--negro);color:white;
+}
+.cta-h{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;letter-spacing:-1.5px;max-width:600px;margin:0 auto 16px;line-height:1.15;}
+.cta-h .hl{color:var(--verde);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,0.4);max-width:460px;margin:0 auto 36px;line-height:1.7;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+footer{
+  padding:32px 24px;background:var(--negro);
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.footer-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;}
+.footer-links{display:flex;gap:20px;justify-content:center;margin-bottom:12px;}
+.footer-links a{font-size:0.76rem;color:rgba(255,255,255,0.3);text-decoration:none;}
+.footer-copy{font-size:0.74rem;color:rgba(255,255,255,0.2);}
+
+@media(max-width:600px){
+  .hero-visual{grid-template-columns:1fr;max-width:280px;}
+  .proceso{padding:32px 20px;}
+  .ecuador-section{padding:32px 20px;}
+  .nav-links{display:none;}
+  .cta-btns{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+      <polygon points="14,1.5 25,7.5 25,20.5 14,26.5 3,20.5 3,7.5" fill="#A8E63D"/>
+      <polyline points="8,14 12,18 20,10" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-brand">PRO<span>VEED</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#que-es">¿Qué es?</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#ventajas">Ventajas</a>
+    <a href="#faq">Preguntas</a>
+  </div>
+  <a href="prelanzamiento.html" class="nav-cta">Registrarme gratis →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="que-es">
+  <div class="hero-eyebrow">🇪🇨 Hecho para Ecuador</div>
+  <h1 class="hero-h1">El marketplace B2B que<br>conecta <span class="hl">Ecuador</span><br>al por mayor</h1>
+  <p class="hero-p">PROVEED es la plataforma que conecta a emprendedores con proveedores mayoristas verificados de las 24 provincias del Ecuador. Sin intermediarios, sin riesgos, sin perder el tiempo.</p>
+  <div class="hero-btns">
+    <a href="prelanzamiento.html" class="btn-primary btn-verde">🚀 Quiero registrarme</a>
+    <a href="#como-funciona" class="btn-secondary">Ver cómo funciona →</a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="vis-card">
+      <span class="vis-emoji">👗</span>
+      <div class="vis-title">Textiles al por mayor</div>
+      <div class="vis-sub">Desde Guayaquil y Quito</div>
+      <div class="vis-price">desde $3.50/und</div>
+      <div class="vis-badge" style="background:rgba(255,140,0,0.1);color:#FF8C00;">Verificado ✓</div>
+    </div>
+    <div class="vis-card" style="border:2px solid var(--verde);transform:scale(1.04);">
+      <span class="vis-emoji">📱</span>
+      <div class="vis-title">Tecnología mayorista</div>
+      <div class="vis-sub">Importadores directos</div>
+      <div class="vis-price">desde $8.00/und</div>
+      <div class="vis-badge" style="background:rgba(168,230,61,0.1);color:var(--verde2);">🔥 Popular</div>
+    </div>
+    <div class="vis-card">
+      <span class="vis-emoji">🛒</span>
+      <div class="vis-title">Alimentos y despensa</div>
+      <div class="vis-sub">Distribuidores locales</div>
+      <div class="vis-price">desde $15.00/caja</div>
+      <div class="vis-badge" style="background:rgba(0,200,100,0.1);color:#00C864;">Verificado ✓</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ PROBLEMA RESUELVE -->
+<section class="section" style="background:var(--gris);">
+  <div class="section-inner">
+    <div class="section-tag">💡 El problema que resolvemos</div>
+    <h2 class="section-h">Encontrar proveedores en Ecuador<br>era una odisea</h2>
+    <p class="section-p">Horas buscando en TikTok, grupos de WhatsApp sin orden, estafas, precios escondidos y proveedores sin verificar. Ya no más.</p>
+
+    <div class="grid3">
+      <div class="card-feat">
+        <div class="cf-icon" style="background:#FEE2E2;">😤</div>
+        <div class="cf-title">El problema antes</div>
+        <div class="cf-desc">Emprendedores perdiendo horas buscando en TikTok, Facebook y WhatsApp. Sin garantías, sin precios claros, sin saber si el proveedor es real.</div>
+        <div class="cf-tag" style="background:rgba(255,77,77,0.08);color:#FF4D4D;">Problema real</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">✅</div>
+        <div class="cf-title">La solución PROVEED</div>
+        <div class="cf-desc">Un catálogo organizado de proveedores verificados con RUC, fotos reales, precios claros y chat directo. Todo en un solo lugar.</div>
+        <div class="cf-tag">Solución real</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:#FFF3E0;">📈</div>
+        <div class="cf-title">El resultado</div>
+        <div class="cf-desc">Emprendedores que ahorran tiempo, encuentran mejores precios, compran con seguridad y hacen crecer sus negocios más rápido.</div>
+        <div class="cf-tag">Crecimiento real</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="section" id="como-funciona">
+  <div class="section-inner">
+    <div class="section-tag">⚙️ Cómo funciona</div>
+    <h2 class="section-h">Simple como debe ser</h2>
+    <p class="section-p">En menos de 5 minutos puedes estar haciendo tu primer pedido al por mayor.</p>
+
+    <div class="proceso">
+      <div style="text-align:center;margin-bottom:8px;">
+        <div style="font-size:0.72rem;font-weight:800;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;">Proceso paso a paso</div>
+        <h3 style="font-size:1.6rem;font-weight:900;margin-top:8px;letter-spacing:-0.5px;">De cero a tu primer<br>pedido mayorista</h3>
+      </div>
+      <div class="proceso-steps">
+        <div class="ps">
+          <div class="ps-num">1</div>
+          <div class="ps-icon">📝</div>
+          <div class="ps-title">Crea tu cuenta</div>
+          <div class="ps-desc">Nombre, correo y teléfono. En 2 minutos estás adentro. Sin burocracia.</div>
+        </div>
+        <div class="ps">
+          <div class="ps-num">2</div>
+          <div class="ps-icon">🔍</div>
+          <div class="ps-title">Explora el catálogo</div>
+          <div class="ps-desc">Busca por categoría, imagen o nombre. Miles de productos verificados.</div>
+        </div>
+        <div class="ps">
+          <div class="ps-num">3</div>
+          <div class="ps-icon">💬</div>
+          <div class="ps-title">Habla con el proveedor</div>
+          <div class="ps-desc">Chat directo, precios claros, sin rodeos. Negocia en tiempo real.</div>
+        </div>
+        <div class="ps">
+          <div class="ps-num">4</div>
+          <div class="ps-icon">🛒</div>
+          <div class="ps-title">Haz tu pedido</div>
+          <div class="ps-desc">Compra segura procesada por PROVEED. Sin riesgo de estafa.</div>
+        </div>
+        <div class="ps">
+          <div class="ps-num">5</div>
+          <div class="ps-icon">📦</div>
+          <div class="ps-title">Recibe y vende</div>
+          <div class="ps-desc">Seguimiento en tiempo real. Recibe tu mercadería y empieza a vender.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTAJAS -->
+<section class="section" id="ventajas" style="background:var(--gris);">
+  <div class="section-inner">
+    <div class="section-tag">⭐ Ventajas exclusivas</div>
+    <h2 class="section-h">Por qué elegir PROVEED</h2>
+    <p class="section-p">No somos otra app. Somos la infraestructura que Ecuador necesitaba para el comercio mayorista.</p>
+
+    <div class="grid3">
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">🔒</div>
+        <div class="cf-title">Proveedores verificados</div>
+        <div class="cf-desc">Cada proveedor pasa por verificación de identidad con cédula y RUC. Nunca más te van a estafar comprando al por mayor.</div>
+        <div class="cf-tag">Seguridad total</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">💰</div>
+        <div class="cf-title">Precios mayoristas reales</div>
+        <div class="cf-desc">Sin precios ocultos. Ves el precio mayorista directamente. Hasta 60% más barato que al detal en muchas categorías.</div>
+        <div class="cf-tag">Ahorro garantizado</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">🤖</div>
+        <div class="cf-title">Búsqueda con IA</div>
+        <div class="cf-desc">Saca foto a cualquier producto y nuestra inteligencia artificial encuentra proveedores similares en todo el catálogo.</div>
+        <div class="cf-tag">Tecnología avanzada</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">📱</div>
+        <div class="cf-title">Desde el celular</div>
+        <div class="cf-desc">Sin instalar nada. Funciona desde el navegador de tu celular Android o iPhone. Rápido, fluido y siempre disponible.</div>
+        <div class="cf-tag">Acceso universal</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">🧾</div>
+        <div class="cf-title">Facturación automática</div>
+        <div class="cf-desc">Genera facturas PDF con un clic. Ideal para emprendedores que necesitan justificar sus compras al por mayor.</div>
+        <div class="cf-tag">Ahorra tiempo</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">🌎</div>
+        <div class="cf-title">Las 24 provincias</div>
+        <div class="cf-desc">Red de proveedores en toda la Costa, Sierra, Oriente e Islas Galápagos. Envíos seguros a donde estés en Ecuador.</div>
+        <div class="cf-tag">Cobertura nacional</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">⭐</div>
+        <div class="cf-title">Reseñas con evidencia</div>
+        <div class="cf-desc">Los compradores suben fotos reales del producto recibido. Sabes exactamente qué vas a recibir antes de comprar.</div>
+        <div class="cf-tag">Transparencia real</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">🎬</div>
+        <div class="cf-title">Tips y contenido</div>
+        <div class="cf-desc">Videos de estrategias de venta, tendencias del mercado ecuatoriano y consejos de emprendedores exitosos.</div>
+        <div class="cf-tag">Comunidad activa</div>
+      </div>
+      <div class="card-feat">
+        <div class="cf-icon" style="background:rgba(168,230,61,0.1);">🆓</div>
+        <div class="cf-title">Registro completamente gratis</div>
+        <div class="cf-desc">Crear tu cuenta y explorar el catálogo es 100% gratis. Sin tarjeta de crédito, sin trampas. Empieza hoy mismo.</div>
+        <div class="cf-tag">Sin costo inicial</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PARA ECUADOR -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-tag">🇪🇨 Hecho para Ecuador</div>
+    <h2 class="section-h">Pensado 100% para el<br>emprendedor ecuatoriano</h2>
+
+    <div class="ecuador-section">
+      <div class="ecuador-grid">
+        <div class="ec-item">
+          <div class="ec-icon">🏙️</div>
+          <div class="ec-title">Costa, Sierra y Oriente</div>
+          <div class="ec-desc">Proveedores verificados en las 24 provincias. Guayaquil, Quito, Cuenca, Manta y más.</div>
+        </div>
+        <div class="ec-item">
+          <div class="ec-icon">💵</div>
+          <div class="ec-title">Precios en dólares</div>
+          <div class="ec-desc">Todo en USD, la moneda que usamos todos en Ecuador. Sin conversiones ni sorpresas.</div>
+        </div>
+        <div class="ec-item">
+          <div class="ec-icon">🤝</div>
+          <div class="ec-title">Chat en español</div>
+          <div class="ec-desc">Plataforma completamente en español ecuatoriano. Soporte local y cercano.</div>
+        </div>
+        <div class="ec-item">
+          <div class="ec-icon">📦</div>
+          <div class="ec-title">Envíos nacionales</div>
+          <div class="ec-desc">Conectado con las principales transportadoras del Ecuador para envíos seguros y rastreables.</div>
+        </div>
+        <div class="ec-item">
+          <div class="ec-icon">🧾</div>
+          <div class="ec-title">RUC y cédula</div>
+          <div class="ec-desc">Verificación con documentos ecuatorianos. Facturación compatible con el SRI.</div>
+        </div>
+        <div class="ec-item">
+          <div class="ec-icon">📱</div>
+          <div class="ec-title">WhatsApp integrado</div>
+          <div class="ec-desc">Comunicación y notificaciones por WhatsApp, el canal que todos usamos en Ecuador.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section" style="background:var(--gris);">
+  <div class="section-inner">
+    <div class="section-tag">💬 Lo que dicen</div>
+    <h2 class="section-h">Emprendedores que ya<br>están listos para el lanzamiento</h2>
+    <p class="section-p" style="margin-bottom:40px;">Cientos de emprendedores y proveedores ecuatorianos esperan el 10 de septiembre.</p>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-text">"Ya no más buscando en TikTok y esperando que me estafadores respondan. Esto es lo que el Ecuador necesitaba hace años."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--verde2);">M</div>
+          <div>
+            <div class="testi-name">María José T.</div>
+            <div class="testi-role">Emprendedora · Guayaquil</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-text">"Como proveedor, esto me permite llegar a cientos de revendedores sin pagar publicidad. El 10 de septiembre voy a tener mi tienda lista."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--naranja);">C</div>
+          <div>
+            <div class="testi-name">Carlos R.</div>
+            <div class="testi-role">Importador textil · Quito</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-text">"Me registré de inmediato. Llevo 3 años revendiendo y siempre fue un dolor encontrar buenos proveedores. Esto lo cambia todo."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#007AFF;">A</div>
+          <div>
+            <div class="testi-name">Adriana M.</div>
+            <div class="testi-role">Revendedora · Cuenca</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-tag" style="margin:0 auto 16px;">❓ Preguntas frecuentes</div>
+    <h2 class="section-h">Todo lo que necesitas saber</h2>
+    <p class="section-p" style="margin:0 auto 48px;">Resolvemos tus dudas antes de que te registres.</p>
+
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿PROVEED es gratuito? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Sí. Registrarse y explorar el catálogo es completamente gratis. No necesitas tarjeta de crédito. Cuando hagas tu primer pedido, PROVEED cobra una pequeña comisión sobre la transacción, igual que cualquier marketplace.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Cómo verifican a los proveedores? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Cada proveedor debe presentar cédula de identidad, RUC activo y fotos reales de sus productos. El equipo de PROVEED verifica manualmente cada cuenta antes de activarla. También hay un sistema de reseñas con fotos de evidencia para mantener la calidad.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Puedo ser emprendedor y proveedor al mismo tiempo? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Absolutamente. Puedes crear ambos perfiles con la misma cuenta. Compra al por mayor para tu negocio y también vende tus productos a otros emprendedores.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Hacen envíos a todas las provincias del Ecuador? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Sí. PROVEED trabaja con una red de proveedores en las 24 provincias. El envío lo coordina directamente el proveedor con la transportadora de su preferencia. Siempre tienes seguimiento del estado de tu pedido.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Qué pasa si el proveedor no entrega o entrega mal? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">PROVEED procesa los pagos y tiene un sistema de protección al comprador. Si el proveedor no cumple con lo pactado, puedes abrir una disputa y el equipo de soporte interviene para resolver el caso.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Cuándo exactamente abren el acceso el 10 de septiembre? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">El acceso se abre el 10 de septiembre de 2025. Las personas registradas en el prelanzamiento recibirán un enlace personalizado de acceso anticipado por correo electrónico y WhatsApp antes que el público general.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">¿Necesito descargar una aplicación? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">No. PROVEED funciona directamente desde el navegador de tu celular (Chrome, Safari, etc.). No necesitas descargar ni instalar nada. Solo guarda el enlace en tu pantalla de inicio para acceder rápidamente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="section-tag" style="margin:0 auto 20px;background:rgba(168,230,61,0.1);border-color:rgba(168,230,61,0.2);">🚀 Prelanzamiento abierto</div>
+  <h2 class="cta-h">El Ecuador que vende<br><span class="hl">empieza el 10 de Sep.</span></h2>
+  <p class="cta-p">Únete a los cientos de emprendedores y proveedores que ya se registraron para el acceso anticipado. Es gratis, siempre.</p>
+  <div class="cta-btns">
+    <a href="prelanzamiento.html" class="btn-primary" style="background:var(--verde);color:#111;padding:16px 32px;font-size:1rem;">🎯 Quiero mi acceso anticipado</a>
+    <a href="prelanzamiento.html" class="btn-primary" style="background:rgba(255,255,255,0.08);padding:16px 32px;font-size:1rem;border:1px solid rgba(255,255,255,0.1);">Ver el registro →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+      <polygon points="14,1.5 25,7.5 25,20.5 14,26.5 3,20.5 3,7.5" fill="#A8E63D"/>
+      <polyline points="8,14 12,18 20,10" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span style="font-size:1rem;font-weight:900;color:white;">PRO<span style="color:var(--verde);">VEED</span></span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+    <a href="#">Contacto</a>
+    <a href="prelanzamiento.html">Prelanzamiento</a>
+  </div>
+  <div class="footer-copy">© 2025 PROVEED · El marketplace B2B del Ecuador · Todos los derechos reservados</div>
+</footer>
+
+<script>
+function toggleFaq(el){ el.classList.toggle('open'); }
+</script>
+</body>
+</html
