@@ -1,0 +1,40 @@
+# robots.txt — SURTIFY
+# https://www.surtify.app/
+
+User-agent: *
+Allow: /
+
+# Páginas privadas de usuario — no indexar
+Disallow: /dashboard
+Disallow: /carrito
+Disallow: /pedidos
+Disallow: /perfil-emprendedor
+Disallow: /perfil-proveedor
+Disallow: /chat
+Disallow: /bienvenida
+Disallow: /confirmar-pedido
+Disallow: /producto-editar
+Disallow: /admin
+Disallow: /superadmin
+Disallow: /tips-admin
+
+# API — no indexar
+Disallow: /api/
+
+# Archivos de configuración
+Disallow: /*.json$
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Sitemap
+Sitemap: https://www.surtify.app/sitemap.xml
+
+# Crawl-delay para bots secundarios
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
