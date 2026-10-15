@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SURTIFY — Acceso Emprendedor</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#A8E63D">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{--G:#A8E63D;--G2:#7BC234;--O:#FF8C00;--R:#FF4D4D;--N:#111;}
+body{background:#F5F6F2;font-family:'Inter',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;}
+
+/* HEADER */
+.top-bar{background:#fff;padding:48px 20px 18px;display:flex;align-items:center;gap:12px;border-bottom:2.5px solid var(--G);}
+.top-logo{width:40px;height:40px;flex-shrink:0;}
+.top-brand{font-size:1.15rem;font-weight:900;color:#111;letter-spacing:-.5px;}
+.top-brand span{color:var(--G2);}
+.top-sub{font-size:0.6rem;color:#aaa;text-transform:uppercase;letter-spacing:1.5px;margin-top:1px;}
+
+/* TABS */
+.tabs{display:flex;background:#fff;border-bottom:1.5px solid #eee;}
+.tab-btn{flex:1;padding:14px;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:700;color:#bbb;cursor:pointer;border-bottom:2.5px solid transparent;transition:.15s;}
+.tab-btn.active{color:var(--G2);border-bottom-color:var(--G2);}
+
+/* FORM WRAP */
+.form-wrap{padding:20px 16px 50px;max-width:480px;margin:0 auto;}
+
+/* ERROR BOX */
+.msg-box{display:none;border-radius:12px;padding:11px 14px;font-size:0.82rem;margin-bottom:16px;line-height:1.5;}
+.msg-box.error{background:rgba(255,77,77,.08);border:1.5px solid rgba(255,77,77,.3);color:var(--R);}
+.msg-box.visible{display:block;}
+
+/* CARD DE FORMULARIO */
+.form-card{background:#fff;border-radius:20px;padding:20px;border:1px solid #eee;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:14px;}
+
+/* FIELDS */
+.field{margin-bottom:14px;}
+.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:0.68rem;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px;}
+.field input{width:100%;padding:14px 16px;background:#F5F6F2;border:1.5px solid #e8e8e8;border-radius:13px;font-family:'Inter',sans-serif;font-size:0.95rem;color:#111;outline:none;-webkit-appearance:none;transition:border-color .2s,background .2s;}
+.field input:focus{border-color:var(--G2);background:#fff;box-shadow:0 0 0 3px rgba(123,194,52,.1);}
+.field input::placeholder{color:#ccc;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+/* SEC DIVIDER */
+.sec-div{font-size:0.65rem;font-weight:800;color:#bbb;text-transform:uppercase;letter-spacing:1px;padding:14px 0 10px;display:flex;align-items:center;gap:8px;}
+.sec-div::after{content:'';flex:1;height:1px;background:#eee;}
+
+/* BOTONES */
+.btn-main{width:100%;padding:15px;border:none;border-radius:14px;background:var(--G);color:#111;font-family:'Inter',sans-serif;font-size:0.96rem;font-weight:800;cursor:pointer;margin-top:4px;transition:.15s;letter-spacing:.2px;}
+.btn-main:active{transform:scale(.98);background:var(--G2);}
+.btn-main:disabled{opacity:.5;cursor:not-allowed;}
+.btn-main.oscuro{background:#111;color:#fff;}
+.btn-main.oscuro:active{background:#333;}
+
+/* LINK PROVEEDOR */
+.switch-portal{text-align:center;margin-top:16px;font-size:0.8rem;color:#aaa;padding-bottom:10px;}
+.switch-portal a{color:var(--O);font-weight:700;text-decoration:none;}
+
+/* SECTOR CHIPS */
+.sector-intro{font-size:0.78rem;color:#888;margin-bottom:12px;line-height:1.5;}
+.sectores-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.sector-chip{background:#F5F6F2;border:1.5px solid #e8e8e8;border-radius:14px;padding:12px 10px;text-align:center;cursor:pointer;transition:.15s;}
+.sector-chip:active{transform:scale(.97);}
+.sector-chip.selected{border-color:var(--G2);background:rgba(123,194,52,.08);box-shadow:0 0 0 2px rgba(123,194,52,.15);}
+.sector-chip-emoji{font-size:1.5rem;margin-bottom:5px;}
+.sector-chip-nom{font-size:0.62rem;font-weight:700;color:#555;line-height:1.3;}
+.sector-chip.selected .sector-chip-nom{color:var(--G2);}
+.sector-sel-label{background:rgba(123,194,52,.08);border:1.5px solid rgba(123,194,52,.25);border-radius:11px;padding:9px 13px;font-size:0.76rem;color:var(--G2);font-weight:700;margin-bottom:12px;display:none;}
+
+/* FOTOS */
+.foto-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0;}
+.foto-slot{border:2px dashed #ddd;border-radius:16px;padding:18px 12px;text-align:center;cursor:pointer;position:relative;overflow:hidden;background:#F5F6F2;transition:.2s;}
+.foto-slot:active{background:#eee;}
+.foto-slot.filled{border-color:var(--G2);border-style:solid;background:#fff;}
+.foto-slot img{width:100%;height:100px;object-fit:cover;border-radius:10px;display:none;}
+.foto-slot.filled img{display:block;}
+.foto-ph{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.foto-slot.filled .foto-ph{display:none;}
+.foto-ph svg{width:26px;height:26px;stroke:#ccc;fill:none;stroke-width:1.5;}
+.foto-ph span{font-size:0.7rem;color:#bbb;font-weight:600;line-height:1.4;}
+.foto-inp{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.foto-check{position:absolute;top:7px;right:7px;width:22px;height:22px;background:var(--G);border-radius:50%;display:none;align-items:center;justify-content:center;}
+.foto-slot.filled .foto-check{display:flex;}
+.foto-check svg{width:10px;height:10px;stroke:#111;fill:none;stroke-width:3;}
+
+/* SELFIE */
+.selfie-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:0;}
+.selfie-circle{width:90px;height:90px;border-radius:50%;border:2.5px dashed #ddd;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;background:#F5F6F2;transition:.2s;}
+.selfie-circle.filled{border-color:var(--G2);border-style:solid;background:#fff;}
+.selfie-circle img{width:100%;height:100%;object-fit:cover;display:none;}
+.selfie-circle.filled img{display:block;}
+.selfie-ph{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.selfie-circle.filled .selfie-ph{display:none;}
+.selfie-ph svg{width:28px;height:28px;stroke:#ccc;fill:none;stroke-width:1.5;}
+.selfie-ph span{font-size:0.62rem;color:#bbb;font-weight:600;}
+.selfie-inp{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.selfie-lbl{font-size:0.74rem;color:#aaa;text-align:center;line-height:1.5;}
+
+/* BLOQUEO DISPOSITIVOS */
+.block-screen{display:none;flex-direction:column;align-items:center;text-align:center;padding:30px 0;}
+.block-ico{width:70px;height:70px;background:rgba(255,77,77,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:2rem;}
+.block-tit{font-size:1rem;font-weight:900;color:#111;margin-bottom:6px;}
+.block-sub{font-size:0.8rem;color:#aaa;line-height:1.6;margin-bottom:18px;max-width:28ch;}
+.block-devs{width:100%;background:#fff;border:1px solid #eee;border-radius:16px;margin-bottom:14px;overflow:hidden;}
+.block-dev{padding:12px 14px;border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:10px;}
+.block-dev:last-child{border:none;}
+.block-dev-ico{width:36px;height:36px;border-radius:10px;background:#F5F6F2;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.block-dev-info{flex:1;text-align:left;}
+.block-dev-nom{font-size:0.8rem;font-weight:700;color:#111;}
+.block-dev-sub{font-size:0.64rem;color:#aaa;margin-top:2px;}
+.block-dev-this{font-size:0.6rem;font-weight:800;color:var(--G2);margin-top:2px;}
+.btn-remove-dev{padding:6px 11px;background:rgba(255,77,77,.07);border:1px solid rgba(255,77,77,.2);border-radius:8px;font-family:'Inter',sans-serif;font-size:0.64rem;font-weight:700;color:var(--R);cursor:pointer;}
+
+/* UPLOAD */
+.upload-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px);}
+.upload-overlay.show{display:flex;}
+.upload-box{background:#fff;border-radius:22px;padding:30px 26px;width:82%;max-width:300px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.upload-box h3{font-size:1rem;font-weight:800;color:#111;margin-bottom:6px;}
+.upload-box p{font-size:0.78rem;color:#aaa;margin-bottom:18px;}
+.upload-track{height:7px;background:#eee;border-radius:7px;overflow:hidden;}
+.upload-bar{height:100%;background:var(--G);border-radius:7px;width:0%;transition:width .35s;}
+.upload-pct{font-size:1.3rem;font-weight:900;color:var(--G2);margin-top:10px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-bar">
+  <div class="top-logo">
+    <svg viewBox="0 0 726 896" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#93EC21" d="M363 0 L726 143 L726 754 L363 896 L0 754 L0 143 Z"/>
+      <path fill="#FFFFFF" d="M379 149 L455 219 L350 322 L517 598 L347 747 L271 677 L376 574 L209 298 Z"/>
+    </svg>
+  </div>
+  <div>
+    <div class="top-brand">SURT<span>IFY</span></div>
+    <div class="top-sub">Portal Emprendedor</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Iniciar sesión</button>
+  <button class="tab-btn" id="tab-reg" onclick="switchTab('reg')">Crear cuenta</button>
+</div>
+
+<div class="form-wrap">
+  <div id="msg-error" class="msg-box error"></div>
+
+  <!-- BLOQUEO DISPOSITIVOS -->
+  <div id="block-screen" class="block-screen">
+    <div class="block-ico">🔒</div>
+    <div class="block-tit">Límite de dispositivos</div>
+    <div class="block-sub">Tu cuenta ya está activa en 3 dispositivos. Elimina uno para continuar.</div>
+    <div class="block-devs" id="block-devs-list"></div>
+    <button class="btn-main oscuro" onclick="cancelarBloqueo()">← Cancelar</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="form-login">
+    <div class="form-card">
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input type="email" id="l-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+    </div>
+    <button class="btn-main" id="btn-login" onclick="doLogin()">ENTRAR →</button>
+    <div class="switch-portal">¿Eres proveedor? <a href="https://surtify-proveedor.vercel.app">Entra aquí →</a></div>
+  </div>
+
+  <!-- REGISTRO -->
+  <div id="form-reg" style="display:none;">
+
+    <div class="sec-div">Datos personales</div>
+    <div class="form-card">
+      <div class="field">
+        <label>Nombre completo *</label>
+        <input type="text" id="r-nombre" placeholder="Juan Torres" autocomplete="name">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Cédula *</label>
+          <input type="text" id="r-cedula" placeholder="1712345678" maxlength="10" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label>Teléfono *</label>
+          <input type="tel" id="r-telefono" placeholder="0991234567" maxlength="10" inputmode="tel">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Ciudad *</label>
+          <input type="text" id="r-ciudad" placeholder="Quito">
+        </div>
+        <div class="field">
+          <label>Fecha de nacimiento</label>
+          <input type="date" id="r-fecha">
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-div">Tu sector de negocio</div>
+    <div class="form-card">
+      <p class="sector-intro">¿En qué sector trabajas? Esto personaliza las categorías de productos que verás.</p>
+      <div class="sectores-grid">
+        <div class="sector-chip" onclick="selSector(this,'tec','Tecnología','💻')"><div class="sector-chip-emoji">💻</div><div class="sector-chip-nom">Tecnología y Electrónica</div></div>
+        <div class="sector-chip" onclick="selSector(this,'moda','Moda y Calzado','👗')"><div class="sector-chip-emoji">👗</div><div class="sector-chip-nom">Moda y Calzado</div></div>
+        <div class="sector-chip" onclick="selSector(this,'hogar','Cocina y Hogar','🏠')"><div class="sector-chip-emoji">🏠</div><div class="sector-chip-nom">Cocina y Hogar</div></div>
+        <div class="sector-chip" onclick="selSector(this,'belle','Belleza y Salud','💄')"><div class="sector-chip-emoji">💄</div><div class="sector-chip-nom">Belleza y Salud</div></div>
+        <div class="sector-chip" onclick="selSector(this,'ferre','Ferretería','🔧')"><div class="sector-chip-emoji">🔧</div><div class="sector-chip-nom">Ferretería e Industria</div></div>
+        <div class="sector-chip" onclick="selSector(this,'dep','Deporte','⚽')"><div class="sector-chip-emoji">⚽</div><div class="sector-chip-nom">Deporte y Fitness</div></div>
+        <div class="sector-chip" onclick="selSector(this,'auto','Automotriz','🚗')"><div class="sector-chip-emoji">🚗</div><div class="sector-chip-nom">Automotriz</div></div>
+        <div class="sector-chip" onclick="selSector(this,'ninos','Juguetes','🧸')"><div class="sector-chip-emoji">🧸</div><div class="sector-chip-nom">Juguetes y Bebés</div></div>
+        <div class="sector-chip" onclick="selSector(this,'alim','Alimentación','🥗')"><div class="sector-chip-emoji">🥗</div><div class="sector-chip-nom">Alimentación</div></div>
+        <div class="sector-chip" onclick="selSector(this,'agro','Agropecuario','🌾')"><div class="sector-chip-emoji">🌾</div><div class="sector-chip-nom">Agropecuario</div></div>
+      </div>
+      <div class="sector-sel-label" id="sector-sel-label"></div>
+    </div>
+
+    <div class="sec-div">Foto de verificación</div>
+    <div class="form-card">
+      <div class="selfie-wrap">
+        <div class="selfie-circle" id="selfie-circle">
+          <img id="selfie-preview" src="" alt="">
+          <div class="selfie-ph">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Tu foto</span>
+          </div>
+          <input type="file" accept="image/*" capture="user" class="selfie-inp" onchange="cargarSelfie(this)">
+        </div>
+        <div class="selfie-lbl">Foto de tu rostro claramente visible<br>para verificar tu identidad</div>
+      </div>
+    </div>
+
+    <div class="sec-div">Fotos de cédula</div>
+    <div class="form-card">
+      <div class="foto-grid">
+        <div class="foto-slot" id="cedula-front-slot">
+          <img id="cedula-front-preview" src="" alt="">
+          <div class="foto-ph">
+            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <span>Cédula frontal</span>
+          </div>
+          <div class="foto-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <input type="file" accept="image/*" class="foto-inp" onchange="cargarFoto(this,'cedula-front')">
+        </div>
+        <div class="foto-slot" id="cedula-back-slot">
+          <img id="cedula-back-preview" src="" alt="">
+          <div class="foto-ph">
+            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <span>Cédula trasera</span>
+          </div>
+          <div class="foto-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <input type="file" accept="image/*" class="foto-inp" onchange="cargarFoto(this,'cedula-back')">
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-div">Acceso a tu cuenta</div>
+    <div class="form-card">
+      <div class="field">
+        <label>Correo electrónico *</label>
+        <input type="email" id="r-email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label>Contraseña *</label>
+        <input type="password" id="r-pass" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+      </div>
+    </div>
+
+    <button class="btn-main" id="btn-reg" onclick="doRegistro()">CREAR CUENTA →</button>
+    <div class="switch-portal">¿Ya tienes cuenta? <a href="#" onclick="switchTab('login');return false;">Inicia sesión →</a></div>
+  </div>
+</div>
+
+<!-- UPLOAD OVERLAY -->
+<div class="upload-overlay" id="upload-overlay">
+  <div class="upload-box">
+    <h3>Creando tu cuenta</h3>
+    <p>Subiendo documentos de verificación...</p>
+    <div class="upload-track"><div class="upload-bar" id="upload-bar"></div></div>
+    <div class="upload-pct" id="upload-pct">0%</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const {createClient}=supabase;
+const sb=createClient('https://hfmsyrmkewscnvwynzfq.supabase.co','sb_publishable_d1oLsq70a6ZV33vW3XkRgw_nYcN2Z9v');
+const LIMITE_DISP=3;
+let fotoFiles={'cedula-front':null,'cedula-back':null,selfie:null};
+let sectorSeleccionado=null;
+
+// Redirigir proveedores
+(()=>{const p=new URLSearchParams(location.search);if(p.get('tipo')==='proveedor')window.location.href='https://surtify-proveedor.vercel.app';})();
+
+// Auto-login si ya hay sesión
+(async()=>{
+  try{
+    const{data:{session}}=await sb.auth.getSession();
+    if(session)window.location.href='dashboard.html';
+  }catch(e){}
+})();
+
+// ── DEVICE
+function getDeviceId(){let id=localStorage.getItem('surtify_device_id');if(!id){id='dev_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);localStorage.setItem('surtify_device_id',id);}return id;}
+function getDeviceInfo(){const ua=navigator.userAgent;let t='💻 Computadora';if(/Android/i.test(ua))t='📱 Android';else if(/iPhone|iPad/i.test(ua))t='📱 iPhone';else if(/Windows/i.test(ua))t='💻 Windows';else if(/Mac/i.test(ua))t='💻 Mac';const n=ua.includes('Chrome')?'Chrome':ua.includes('Firefox')?'Firefox':'Safari';return t+' · '+n;}
+
+// ── SECTOR
+window.selSector=function(el,codigo,nombre,emoji){
+  sectorSeleccionado=codigo;
+  document.querySelectorAll('.sector-chip').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const lbl=document.getElementById('sector-sel-label');
+  lbl.textContent=emoji+' '+nombre+' seleccionado ✓';
+  lbl.style.display='block';
+};
+
+// ── VERIFICAR DISPOSITIVO
+async function verificarDispositivo(userId,rol){
+  const deviceId=getDeviceId(),deviceInfo=getDeviceInfo();
+  const{data:dispositivos}=await sb.from('dispositivos_sesion').select('*').eq('usuario_id',userId).order('ultimo_acceso',{ascending:false});
+  const lista=dispositivos||[];
+  const yaReg=lista.find(d=>d.device_id===deviceId);
+  if(yaReg){await sb.from('dispositivos_sesion').update({ultimo_acceso:new Date().toISOString(),device_info:deviceInfo}).eq('id',yaReg.id);return{ok:true};}
+  if(lista.length>=LIMITE_DISP)return{ok:false,dispositivos:lista,deviceId,deviceInfo,userId};
+  await sb.from('dispositivos_sesion').insert({usuario_id:userId,device_id:deviceId,device_info:deviceInfo,rol,ultimo_acceso:new Date().toISOString()});
+  return{ok:true};
+}
+
+// ── BLOQUEO
+function mostrarBloqueo(res){
+  document.getElementById('form-login').style.display='none';
+  document.getElementById('block-screen').style.display='flex';
+  const lista=document.getElementById('block-devs-list');lista.innerHTML='';
+  res.dispositivos.forEach(d=>{
+    const esEste=d.device_id===res.deviceId;
+    const fecha=new Date(d.ultimo_acceso).toLocaleDateString('es-EC',{day:'2-digit',month:'short'});
+    const div=document.createElement('div');div.className='block-dev';
+    div.innerHTML=`<div class="block-dev-ico">${d.device_info?.startsWith('📱')?'📱':'💻'}</div><div class="block-dev-info"><div class="block-dev-nom">${d.device_info||'Dispositivo'}</div><div class="block-dev-sub">Acceso: ${fecha}</div>${esEste?'<div class="block-dev-this">← Este dispositivo</div>':''}</div>${!esEste?`<button class="btn-remove-dev" onclick="eliminarDispositivo('${d.id}','${res.userId}','${res.deviceId}','${res.deviceInfo}')">Eliminar</button>`:''}`;
+    lista.appendChild(div);
+  });
+}
+window.eliminarDispositivo=async function(id,userId,deviceId,deviceInfo){
+  await sb.from('dispositivos_sesion').delete().eq('id',id);
+  await sb.from('dispositivos_sesion').insert({usuario_id:userId,device_id:deviceId,device_info:deviceInfo,rol:'emprendedor',ultimo_acceso:new Date().toISOString()});
+  window.location.href='dashboard.html';
+};
+window.cancelarBloqueo=async function(){
+  await sb.auth.signOut();
+  document.getElementById('block-screen').style.display='none';
+  document.getElementById('form-login').style.display='block';
+};
+
+// ── LOGIN
+window.doLogin=async function(){
+  const email=document.getElementById('l-email').value.trim();
+  const pass=document.getElementById('l-pass').value;
+  if(!email||!pass){showError('Completa todos los campos');return;}
+  const btn=document.getElementById('btn-login');
+  btn.disabled=true;btn.textContent='Verificando...';
+  try{
+    const{data,error}=await sb.auth.signInWithPassword({email,password:pass});
+    if(error){showError('Correo o contraseña incorrectos');btn.disabled=false;btn.textContent='ENTRAR →';return;}
+    const{data:usuario}=await sb.from('usuarios').select('rol').eq('id',data.user.id).single();
+    if(usuario?.rol==='proveedor'){await sb.auth.signOut();showError('Esta cuenta es de proveedor. Usa el portal proveedor.');btn.disabled=false;btn.textContent='ENTRAR →';return;}
+    btn.textContent='Verificando dispositivo...';
+    const resultado=await verificarDispositivo(data.user.id,'emprendedor');
+    if(resultado.ok){window.location.href='dashboard.html';}
+    else{btn.disabled=false;btn.textContent='ENTRAR →';mostrarBloqueo(resultado);}
+  }catch(e){showError('Error de conexión. Intenta de nuevo.');btn.disabled=false;btn.textContent='ENTRAR →';}
+};
+
+// ── REGISTRO
+window.doRegistro=async function(){
+  const nombre=document.getElementById('r-nombre').value.trim();
+  const cedula=document.getElementById('r-cedula').value.trim();
+  const telefono=document.getElementById('r-telefono').value.trim();
+  const ciudad=document.getElementById('r-ciudad').value.trim();
+  const fecha=document.getElementById('r-fecha').value;
+  const email=document.getElementById('r-email').value.trim();
+  const pass=document.getElementById('r-pass').value;
+  if(!nombre||!cedula||!telefono||!ciudad||!email||!pass){showError('Completa todos los campos obligatorios');return;}
+  if(pass.length<6){showError('La contraseña debe tener mínimo 6 caracteres');return;}
+  if(!fotoFiles.selfie){showError('Sube tu foto de perfil para verificación');return;}
+  if(!fotoFiles['cedula-front']){showError('Sube la foto frontal de tu cédula');return;}
+  if(!fotoFiles['cedula-back']){showError('Sube la foto trasera de tu cédula');return;}
+  const btn=document.getElementById('btn-reg');
+  btn.disabled=true;
+  document.getElementById('upload-overlay').classList.add('show');
+  try{
+    setProgress(10);
+    const{data,error}=await sb.auth.signUp({email,password:pass});
+    if(error)throw error;
+    const uid=data.user.id;
+    setProgress(30);
+    const selfieUrl=await subirFoto(fotoFiles.selfie,`verificacion/${uid}/selfie`);
+    setProgress(55);
+    const frontUrl=await subirFoto(fotoFiles['cedula-front'],`verificacion/${uid}/cedula-front`);
+    setProgress(75);
+    const backUrl=await subirFoto(fotoFiles['cedula-back'],`verificacion/${uid}/cedula-back`);
+    setProgress(90);
+    await sb.from('usuarios').insert({id:uid,nombre,email,cedula,telefono,ciudad,fecha_nacimiento:fecha||null,foto_perfil:selfieUrl,cedula_frontal:frontUrl,cedula_trasera:backUrl,sector_codigo:sectorSeleccionado||null,rol:'emprendedor',activo:true,verificado:false});
+    await sb.from('dispositivos_sesion').insert({usuario_id:uid,device_id:getDeviceId(),device_info:getDeviceInfo(),rol:'emprendedor',ultimo_acceso:new Date().toISOString()});
+    setProgress(100);
+    setTimeout(()=>{document.getElementById('upload-overlay').classList.remove('show');window.location.href='bienvenida.html';},800);
+  }catch(e){
+    document.getElementById('upload-overlay').classList.remove('show');
+    showError('Error: '+(e.message||'Intenta de nuevo'));
+    btn.disabled=false;
+  }
+};
+
+// ── TABS
+window.switchTab=function(tab){
+  document.getElementById('tab-login').classList.toggle('active',tab==='login');
+  document.getElementById('tab-reg').classList.toggle('active',tab==='reg');
+  document.getElementById('form-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('form-reg').style.display=tab==='reg'?'block':'none';
+  document.getElementById('msg-error').classList.remove('visible');
+  window.scrollTo(0,0);
+};
+
+// ── HELPERS
+function showError(msg){const e=document.getElementById('msg-error');e.textContent=msg;e.classList.add('visible');window.scrollTo(0,0);}
+window.cargarSelfie=function(input){const file=input.files[0];if(!file)return;fotoFiles.selfie=file;const r=new FileReader();r.onload=e=>{document.getElementById('selfie-preview').src=e.target.result;document.getElementById('selfie-circle').classList.add('filled');};r.readAsDataURL(file);};
+window.cargarFoto=function(input,tipo){const file=input.files[0];if(!file)return;fotoFiles[tipo]=file;const r=new FileReader();r.onload=e=>{document.getElementById(tipo+'-preview').src=e.target.result;document.getElementById(tipo+'-slot').classList.add('filled');};r.readAsDataURL(file);};
+async function subirFoto(file,path){const{error}=await sb.storage.from('surtify-media').upload(path,file,{upsert:true});if(error)throw error;const{data}=sb.storage.from('surtify-media').getPublicUrl(path);return data.publicUrl;}
+function setProgress(pct){document.getElementById('upload-bar').style.width=pct+'%';document.getElementById('upload-pct').textContent=pct+'%';}
+</script>
+</body>
+</html>
