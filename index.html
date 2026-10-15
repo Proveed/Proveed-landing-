@@ -491,7 +491,7 @@ function getColor(cat){const cl=(cat||'').toLowerCase();for(const k in coloresCa
 function getEmoji(cat){const cl=(cat||'').toLowerCase();for(const k in emojisCat){if(cl.includes(k))return emojisCat[k];}return '📦';}
 
 (async()=>{
-  try{
+try{
     const res=await fetch('/api/productos?limit=8');
     const {data:prods}=await res.json();
     const grid=document.getElementById('live-grid');
@@ -524,5 +524,7 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
+<!-- Agente de soporte Thunderbolt -->
+<script defer src="https://www.thunderbolt.com/gateway/api/v1/thunderbolt-ui/embed.js"></script>
 </body>
 </html>
