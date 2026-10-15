@@ -5,7 +5,7 @@
 
   <!-- PÁGINA PRINCIPAL -->
   <url>
-    <loc>https://www.surtify.app/</loc>
+    <loc>https://www.surtify.lat/</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -13,7 +13,7 @@
 
   <!-- ACCESO -->
   <url>
-    <loc>https://www.surtify.app/login</loc>
+    <loc>https://www.surtify.lat/login</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -21,43 +21,43 @@
 
   <!-- EMPRENDEDOR -->
   <url>
-    <loc>https://www.surtify.app/dashboard</loc>
+    <loc>https://www.surtify.lat/dashboard</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/explorar</loc>
+    <loc>https://www.surtify.lat/explorar</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/busqueda</loc>
+    <loc>https://www.surtify.lat/busqueda</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/carrito</loc>
+    <loc>https://www.surtify.lat/carrito</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/pedidos</loc>
+    <loc>https://www.surtify.lat/pedidos</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/perfil-emprendedor</loc>
+    <loc>https://www.surtify.lat/perfil-emprendedor</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/chat</loc>
+    <loc>https://www.surtify.lat/chat</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -65,61 +65,61 @@
 
   <!-- SECTORES PRODUCTIVOS — páginas de categoría para SEO -->
   <url>
-    <loc>https://www.surtify.app/sector/tecnologia</loc>
+    <loc>https://www.surtify.lat/sector/tecnologia</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/moda-calzado</loc>
+    <loc>https://www.surtify.lat/sector/moda-calzado</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/cocina-hogar</loc>
+    <loc>https://www.surtify.lat/sector/cocina-hogar</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/belleza-salud</loc>
+    <loc>https://www.surtify.lat/sector/belleza-salud</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/ferreteria-industria</loc>
+    <loc>https://www.surtify.lat/sector/ferreteria-industria</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/deporte-fitness</loc>
+    <loc>https://www.surtify.lat/sector/deporte-fitness</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/automotriz</loc>
+    <loc>https://www.surtify.lat/sector/automotriz</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/juguetes-bebes</loc>
+    <loc>https://www.surtify.lat/sector/juguetes-bebes</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/alimentacion</loc>
+    <loc>https://www.surtify.lat/sector/alimentacion</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/sector/agropecuario</loc>
+    <loc>https://www.surtify.lat/sector/agropecuario</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -127,25 +127,25 @@
 
   <!-- PÁGINAS LEGALES -->
   <url>
-    <loc>https://www.surtify.app/privacidad</loc>
+    <loc>https://www.surtify.lat/privacidad</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/terminos</loc>
+    <loc>https://www.surtify.lat/terminos</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/cookies</loc>
+    <loc>https://www.surtify.lat/cookies</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.surtify.app/contacto</loc>
+    <loc>https://www.surtify.lat/contacto</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
