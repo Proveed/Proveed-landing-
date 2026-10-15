@@ -257,6 +257,7 @@ footer{padding:36px 24px;background:var(--negro);border-top:1px solid rgba(255,2
 </style>
 </head>
 <body>
+
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo" aria-label="SURTIFY inicio">
@@ -273,7 +274,7 @@ footer{padding:36px 24px;background:var(--negro);border-top:1px solid rgba(255,2
     <a href="#ventajas">Ventajas</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a href="/login" class="nav-cta">Registrarme gratis →</a>
+  <a href="login.html" class="nav-cta">Registrarme gratis →</a>
 </nav>
 
 <!-- FLOATING CTA MÓVIL -->
@@ -282,7 +283,7 @@ footer{padding:36px 24px;background:var(--negro);border-top:1px solid rgba(255,2
     🏪 Más de 500 proveedores verificados
     <span>Únete gratis hoy mismo</span>
   </div>
-  <a href="/login">Empezar →</a>
+  <a href="login.html">Empezar →</a>
 </div>
 
 <!-- HERO -->
@@ -291,8 +292,8 @@ footer{padding:36px 24px;background:var(--negro);border-top:1px solid rgba(255,2
   <h1 class="hero-h1">Compra al por mayor<br>con <span class="hl">proveedores reales</span><br>en Ecuador</h1>
   <p class="hero-p">SURTIFY conecta a emprendedores con proveedores mayoristas verificados en tecnología, moda, alimentos, agropecuario y 7 sectores más. Precios directos, sin intermediarios y sin estafas.</p>
   <div class="hero-btns">
-    <a href="/login" class="btn-verde">Buscar proveedores →</a>
-    <a href="/login?tipo=proveedor" class="btn-secondary">Soy proveedor →</a>
+    <a href="login.html" class="btn-verde">Buscar proveedores →</a>
+    <a href="login.html?tipo=proveedor" class="btn-secondary">Soy proveedor →</a>
   </div>
   <div class="hero-microcopy">✓ Gratis &nbsp;·&nbsp; ✓ Sin tarjeta &nbsp;·&nbsp; ✓ Proveedores verificados</div>
 
@@ -454,8 +455,8 @@ footer{padding:36px 24px;background:var(--negro);border-top:1px solid rgba(255,2
   <h2 class="cta-h">¿Listo para encontrar tus <span class="hl">proveedores mayoristas</span> en Ecuador?</h2>
   <p class="cta-p">Únete a cientos de emprendedores que ya compran al por mayor con confianza a través de SURTIFY.</p>
   <div class="cta-btns">
-    <a href="/login" class="btn-verde">Crear cuenta gratis →</a>
-    <a href="/login?tipo=proveedor" class="btn-secondary" style="color:white;border-color:rgba(255,255,255,.15);">Registrar mi tienda →</a>
+    <a href="login.html" class="btn-verde">Crear cuenta gratis →</a>
+    <a href="login.html?tipo=proveedor" class="btn-secondary" style="color:white;border-color:rgba(255,255,255,.15);">Registrar mi tienda →</a>
   </div>
   <div class="cta-trust">✓ Gratis &nbsp;·&nbsp; ✓ Sin tarjeta &nbsp;·&nbsp; ✓ Proveedores verificados con RUC</div>
 </section>
@@ -470,13 +471,13 @@ footer{padding:36px 24px;background:var(--negro);border-top:1px solid rgba(255,2
     <span class="footer-brand">SURT<span>IFY</span></span>
   </div>
   <div class="footer-links">
-    <a href="/privacidad">Política de privacidad</a>
-    <a href="/terminos">Términos y condiciones</a>
-    <a href="/cookies">Cookies</a>
-    <a href="/login?tipo=proveedor">Soy proveedor</a>
-    <a href="/login">Soy emprendedor</a>
-    <a href="/contacto">Contacto</a>
-    <a href="/sitemap.xml">Sitemap</a>
+    <a href="privacidad.html">Política de privacidad</a>
+    <a href="terminos.html">Términos y condiciones</a>
+    <a href="cookies.html">Cookies</a>
+    <a href="login.html?tipo=proveedor">Soy proveedor</a>
+    <a href="login.html">Soy emprendedor</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="sitemap.xml">Sitemap</a>
   </div>
   <div class="footer-copy">© 2025 SURTIFY · Marketplace B2B Ecuador · Todos los derechos reservados</div>
 </footer>
@@ -505,7 +506,7 @@ function getEmoji(cat){const cl=(cat||'').toLowerCase();for(const k in emojisCat
     });
     // Gate para ver más
     const gate=document.createElement('div');gate.className='live-gate';
-    gate.innerHTML=`<div class="live-gate-ico">🔒</div><div class="live-gate-title">Ver catálogo completo</div><div class="live-gate-sub">Regístrate gratis para ver precios mayoristas, contactar proveedores y hacer pedidos.</div><a href="/login" class="live-gate-btn">Ver todos los productos →</a>`;
+    gate.innerHTML=`<div class="live-gate-ico">🔒</div><div class="live-gate-title">Ver catálogo completo</div><div class="live-gate-sub">Regístrate gratis para ver precios mayoristas, contactar proveedores y hacer pedidos.</div><a href="login.html" class="live-gate-btn">Ver todos los productos →</a>`;
     grid.appendChild(gate);
   }catch(e){
     const grid=document.getElementById('live-grid');
